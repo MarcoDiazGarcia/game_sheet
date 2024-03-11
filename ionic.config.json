@@ -1,0 +1,7 @@
+{
+  "name": "yatze-sheet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
