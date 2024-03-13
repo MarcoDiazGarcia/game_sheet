@@ -21,6 +21,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import PlayerOrder from './pages/PlayerOrder';
 
 setupIonicReact();
 
@@ -28,6 +29,9 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Route exact path="/player-order">
+          <PlayerOrder />
+        </Route>
         <Route exact path="/home">
           <Home />
         </Route>

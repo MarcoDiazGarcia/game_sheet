@@ -1,0 +1,25 @@
+.player-item {
+    background-color: var(--ion-color-step-50);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    padding: 10px;
+    border-radius: 19px;
+}
+
+.player-item-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.close-player-item {
+    font-size: 24px;
+}
+
+.selected {
+    background-color: var(--ion-color-step-200);
+}

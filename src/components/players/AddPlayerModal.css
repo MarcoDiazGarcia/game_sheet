@@ -1,0 +1,12 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+ion-range {
+  --bar-background-active: rgba(0,0,0,0);
+  --bar-height: 8px;
+  --knob-size: 32px;
+  --knob-background: var(--ion-color-step-200);
+}

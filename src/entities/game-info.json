@@ -1,0 +1,105 @@
+{
+    "symbolName": {
+        "en": {
+            "ONES": "1",
+            "TWOS": "2",
+            "THREES": "3",
+            "FOURS": "4",
+            "FIVES": "5",
+            "SIXES": "6",
+            "THREE_OF_A_KIND": "Three of a Kind",
+            "FOUR_OF_A_KIND": "Four of a Kind",
+            "SMALL_STRAIGHT": "Small Straight",
+            "LARGE_STRAIGHT": "Large Straight",
+            "FULL_HOUSE": "Full House",
+            "YAHTZEE": "Yahtzee",
+            "CHANCE": "Chance"
+        },
+        "de": {
+            "ONES": "1",
+            "TWOS": "2",
+            "THREES": "3",
+            "FOURS": "4",
+            "FIVES": "5",
+            "SIXES": "6",
+            "THREE_OF_A_KIND": "Dreierpasch",
+            "FOUR_OF_A_KIND": "Viererpasch",
+            "SMALL_STRAIGHT": "Kleine Straße",
+            "LARGE_STRAIGHT": "Große Straße",
+            "FULL_HOUSE": "Full House",
+            "YAHTZEE": "Kniffel",
+            "CHANCE": "Chance"
+        }
+    },
+    "symbolPointsRange": {
+        "ONES": {
+            "min": 1,
+            "max": 5,
+            "step": 1
+        },
+        "TWOS": {
+            "min": 2,
+            "max": 10,
+            "step": 2
+        },
+        "THREES": {
+            "min": 3,
+            "max": 15,
+            "step": 3
+        },
+        "FOURS": {
+            "min": 4,
+            "max": 20,
+            "step": 4
+        },
+        "FIVES": {
+            "min": 5,
+            "max": 25,
+            "step": 5
+        },
+        "SIXES": {
+            "min": 6,
+            "max": 30,
+            "step": 6
+        },
+        "BONUS": {
+            "threshold": 63,
+            "points": 35
+        },
+        "THREE_OF_A_KIND": {
+            "min": 5,
+            "max": 30,
+            "step": 1
+        },
+        "FOUR_OF_A_KIND": {
+            "min": 5,
+            "max": 30,
+            "step": 1
+        },
+        "SMALL_STRAIGHT": {
+            "min": 30,
+            "max": 30,
+            "step": 0
+        },
+        "LARGE_STRAIGHT": {
+            "min": 40,
+            "max": 40,
+            "step": 0
+        },
+        "FULL_HOUSE": {
+            "min": 25,
+            "max": 25,
+            "step": 0
+        },
+        "YAHTZEE": {
+            "min": 50,
+            "max": 500,
+            "step": 50
+        },
+        "CHANCE": {
+            "min": 5,
+            "max": 30,
+            "step": 1
+        }
+    }
+}
