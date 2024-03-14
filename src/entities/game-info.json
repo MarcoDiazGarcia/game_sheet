@@ -1,4 +1,20 @@
 {
+    "symbolTypes": [
+        ["ONES", "ones"],
+        ["TWOS", "twos"],
+        ["THREES", "threes"],
+        ["FOURS", "fours"],
+        ["FIVES", "fives"],
+        ["SIXES", "sixes"],
+        ["BONUS", "bonus"],
+        ["THREE_OF_A_KIND", "threeOfAKind"],
+        ["FOUR_OF_A_KIND", "fourOfAKind"],
+        ["SMALL_STRAIGHT", "smallStraight"],
+        ["LARGE_STRAIGHT", "largeStraight"],
+        ["FULL_HOUSE", "fullHouse"],
+        ["YAHTZEE", "yahtzee"],
+        ["CHANCE", "chance"]
+    ],
     "symbolName": {
         "en": {
             "ONES": "1",
@@ -79,17 +95,17 @@
         "SMALL_STRAIGHT": {
             "min": 30,
             "max": 30,
-            "step": 0
+            "step": 30
         },
         "LARGE_STRAIGHT": {
             "min": 40,
             "max": 40,
-            "step": 0
+            "step": 40
         },
         "FULL_HOUSE": {
             "min": 25,
             "max": 25,
-            "step": 0
+            "step": 25
         },
         "YAHTZEE": {
             "min": 50,

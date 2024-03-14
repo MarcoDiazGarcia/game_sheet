@@ -1,15 +1,22 @@
 import './GamePlayerHeader.css';
 
+import { IonIcon } from '@ionic/react';
+import { caretBackOutline, caretForwardOutline } from 'ionicons/icons';
+import { IPlayer } from '../../entities/interfaces/IPlayer';
+
 interface GamePlayerHeaderProps {
-    players: string[];
-    prevPlayer: () => void;
-    nextPlayer: () => void;
+    player: IPlayer;
+    dispatch: (action: any) => void;
 }
 
-const GamePlayerHeader: React.FC = () => {
+const GamePlayerHeader: React.FC<GamePlayerHeaderProps> = ({player, dispatch}: GamePlayerHeaderProps) => {
     return (
-        <div className='game-player-header'>
-            <h1>Game Player Header</h1>
+        <div className='ion-margin game-player-header'>
+            <IonIcon icon={caretBackOutline} size='large' onClick={() => dispatch({type: 'prev'})}></IonIcon>
+            <div className='player-name' style={{borderColor: '#' + player.color}}>{player.name}</div>
+            <IonIcon icon={caretForwardOutline} size='large' onClick={() => dispatch({type: 'next'})}></IonIcon>
         </div>
     );
 }
+
+export default GamePlayerHeader;

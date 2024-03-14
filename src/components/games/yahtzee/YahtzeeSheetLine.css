@@ -1,0 +1,14 @@
+
+
+ion-select {
+    min-height: 32px;
+    padding: 0 10px;
+}
+
+.line:nth-child(2n - 1) ion-select {
+    background-color: var(--ion-background-color);
+}
+
+.line:nth-child(2n) ion-select {
+    background-color: var(--ion-color-light);
+}

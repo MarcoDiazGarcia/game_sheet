@@ -1,0 +1,44 @@
+.yahtzee-sheet {
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 16px;
+}
+
+.upper-section, .lower-section {
+    background-color: var(--ion-color-step-300);
+    border-radius: 8px;
+    border: 4px solid var(--ion-color-step-300);
+}
+
+.upper-section {
+    margin-bottom: 10px;
+}
+
+.bonus-line, .total-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    padding: 0 10px;
+}
+
+.bonus-line {
+    border-bottom: 2px solid var(--ion-background-color);
+}
+
+.final-score {
+    position: absolute;
+    bottom: 18px;
+    right: calc(50% - 40px);
+    background-color: var(--ion-background-color);
+    height: 48px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+    border: 3px solid var(--ion-color-step-600);
+    border-radius: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}

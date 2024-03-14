@@ -15,5 +15,7 @@ export interface IYahtzeeSheet {
     bonusThreshold: number;
     bonus: boolean;
     total: number;
+    totalUpperSection: number;
+    totalLowerSection: number;
     isFinished: boolean;
 }

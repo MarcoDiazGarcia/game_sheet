@@ -19,10 +19,6 @@ const PlayerOrder: React.FC = () => {
 
         setPlayers(newPlayersOrder);
 
-        console.log('Player: ', players);
-        console.log('newPlayersOrder: ', newPlayersOrder);
-
-
         event.detail.complete();
     }
 
