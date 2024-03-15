@@ -5,7 +5,7 @@ import { YahtzeeSheet } from "./YahtzeeSheet";
 
 export class YahtzeeGame implements IYahtzeeGame {
     public yahtzeeSheets: Map<number, IYahtzeeSheet>;
-    public current: {
+    public current?: {
         player: Player;
         yahtzeeSheet: YahtzeeSheet;
     };
@@ -22,6 +22,11 @@ export class YahtzeeGame implements IYahtzeeGame {
         }
 
         this.yahtzeeSheets = new Map<number, IYahtzeeSheet>();
+
+        if (!players.length) {
+            return;
+        }
+
         players.map(player => this.yahtzeeSheets.set(player.id, new YahtzeeSheet()));
         this.current = {
             player: players[0],

@@ -1,0 +1,29 @@
+.player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px;
+    border: 4px solid #000;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.player:nth-child(n+4), .player:nth-child(n+4) * {
+    border-width: 2px;
+    font-weight: normal;
+}
+
+.place, .name, .score {
+    padding: 10px;
+}
+
+.place {
+    height: 100%;
+    border-right: 4px solid #000;
+}
+
+.score {
+    border-left: 4px solid #000;
+}

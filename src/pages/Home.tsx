@@ -55,7 +55,7 @@ const Home: React.FC = () => {
 
   function startGame() {
     if (selectedPlayers.length < 2) {
-      setWarningMessage('You need at least 2 players to start a game');
+      setWarningMessage('You need to select at least 2 players to start a game');
       setShowWarningToast(true);
       return;
     }

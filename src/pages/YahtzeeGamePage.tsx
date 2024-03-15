@@ -13,39 +13,41 @@ import { IYahtzeeSheet } from '../entities/interfaces/IYahtzeeSheet';
 import YahtzeeEndscreenModal from '../components/games/yahtzee/YahtzeeEndscreenModal';
 import { YahtzeeSheet } from '../entities/classes/YahtzeeSheet';
 
-function reducer(state: YahtzeeGame, action: any) {
-    switch (action.type) {
-        case 'next':
-            return new YahtzeeGame([], {...state, current: state.next} as YahtzeeGame);
-        case 'prev':
-            return new YahtzeeGame([], {...state, current: state.prev} as YahtzeeGame);
-        case 'score-entered':
-            const newYahtzeeSheet: IYahtzeeSheet = {...state.current.yahtzeeSheet} as IYahtzeeSheet;
-            newYahtzeeSheet[action.score.symbol] = action.score.value;
-            const yahtzeeGame = new YahtzeeGame([], {...state, current: {...state.current, yahtzeeSheet: newYahtzeeSheet}} as YahtzeeGame);
-            yahtzeeGame.yahtzeeSheets.set(yahtzeeGame.current.player.id, newYahtzeeSheet);
-            yahtzeeGame.current = yahtzeeGame.next;
-            return yahtzeeGame;
-        case 'restart':
-            return new YahtzeeGame(state.players);
-        case 'end':
-            const history = useHistory();
-            history.go(history.length - 1);
-            return;
-        default:
-            throw Error('Unknown action.');
-    }
-}
-
 const YahtzeeGamePage: React.FC = () => {
-    const location = useLocation();
-    const historyState: { players: IPlayer[] } = location.state as { players: IPlayer[] };
-
-    const [yahtzeeGame, yahtzeeGameDispatch] = useReducer(reducer, new YahtzeeGame(historyState.players));
-
     const [endScreenModalShow, setEndScreenModalShow] = useState(false);
+    const [endGame, setEndGame] = useState(false);
+    
+    function reducer(state: YahtzeeGame, action: any) {
+        switch (action.type) {
+            case 'next':
+                return new YahtzeeGame([], {...state, current: state.next} as YahtzeeGame);
+            case 'prev':
+                return new YahtzeeGame([], {...state, current: state.prev} as YahtzeeGame);
+            case 'score-entered':
+                const newYahtzeeSheet: IYahtzeeSheet = {...state.current.yahtzeeSheet} as IYahtzeeSheet;
+                newYahtzeeSheet[action.score.symbol] = action.score.value;
+                const yahtzeeGame = new YahtzeeGame([], {...state, current: {...state.current, yahtzeeSheet: newYahtzeeSheet}} as YahtzeeGame);
+                yahtzeeGame.yahtzeeSheets.set(yahtzeeGame.current.player.id, newYahtzeeSheet);
+                yahtzeeGame.current = yahtzeeGame.next;
+                return yahtzeeGame;
+            case 'restart':
+                setEndScreenModalShow(false);
+                return new YahtzeeGame(state.players);
+            case 'end':
+                setEndGame(true);
+                return new YahtzeeGame(state.players);
+            default:
+                throw Error('Unknown action.');
+        }
+    }
+
+    const history = useHistory();
 
     useEffect(() => {
+        if (endGame) {
+            history.push(`/`);
+        }
+
         let isOver: boolean = true;
 
         yahtzeeGame.yahtzeeSheets.forEach((sheet: IYahtzeeSheet) => {
@@ -59,6 +61,11 @@ const YahtzeeGamePage: React.FC = () => {
             setEndScreenModalShow(true);
         }
     });
+
+    const location = useLocation();
+    const historyState: { players: IPlayer[] } = location.state ? location.state as { players: IPlayer[] }: { players: [] };
+
+    const [yahtzeeGame, yahtzeeGameDispatch] = useReducer(reducer, new YahtzeeGame(historyState.players));
 
     return (
         <IonPage>
@@ -76,7 +83,7 @@ const YahtzeeGamePage: React.FC = () => {
                 <GamePlayerHeader player={yahtzeeGame.current.player} dispatch={yahtzeeGameDispatch}></GamePlayerHeader>
                 <YahtzeeSheetComp color={yahtzeeGame.current.player.color} yahtzeeSheet={yahtzeeGame.current.yahtzeeSheet} dispatch={yahtzeeGameDispatch}></YahtzeeSheetComp>
 
-                <YahtzeeEndscreenModal yahtzeeGame={yahtzeeGame} show={endScreenModalShow}></YahtzeeEndscreenModal>
+                <YahtzeeEndscreenModal yahtzeeGame={yahtzeeGame} show={endScreenModalShow} dispatch={yahtzeeGameDispatch}></YahtzeeEndscreenModal>
             </IonContent>
         </IonPage>
     );

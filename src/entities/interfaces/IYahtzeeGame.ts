@@ -3,7 +3,7 @@ import { IYahtzeeSheet } from "./IYahtzeeSheet";
 
 export interface IYahtzeeGame {
     players: IPlayer[];
-    current: {
+    current?: {
         player: IPlayer;
         yahtzeeSheet: IYahtzeeSheet;
     };

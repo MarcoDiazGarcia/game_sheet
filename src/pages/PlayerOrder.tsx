@@ -8,7 +8,7 @@ import { IPlayer } from '../entities/interfaces/IPlayer';
 const PlayerOrder: React.FC = () => {
     const history = useHistory();
     const location = useLocation();
-    const stateData: { players: Player[] } = location.state as { players: Player[] };
+    const stateData: { players: Player[] } = location.state ? location.state as { players: Player[] }: {players: []};
 
     const [players, setPlayers] = useState(stateData.players);
 
