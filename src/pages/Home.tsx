@@ -9,6 +9,8 @@ import { addIcons } from 'ionicons';
 import { addOutline, play } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import WarningToast from '../components/toasts/WarningToast';
+import IGame from '../entities/interfaces/IGame';
+import SelectGameModal from '../components/games/SelectGameModal';
 
 addIcons({
   "add-outline": addOutline
@@ -19,9 +21,14 @@ const Home: React.FC = () => {
 
   const [players, setPlayers] = useState<IPlayer[]>([]);
   const [selectedPlayers, setSelectedPlayers] = useState<IPlayer[]>([]);
+  
   const [showAddPlayerModal, setShowAddPlayerModal] = useState(false);
+  const [showSelectGameModal, setShowSelectGameModal] = useState(false);
+  
   const [showWarningToast, setShowWarningToast] = useState(false);
   const [warningMessage, setWarningMessage] = useState('');
+
+  let game: IGame | null = null;
 
   useEffect(() => {
     setPlayers(loadDefaultPlayers);
@@ -53,14 +60,27 @@ const Home: React.FC = () => {
     setShowAddPlayerModal(false);
   }
 
+  function selectGame(selectedGame: IGame) {
+    game = selectedGame;
+    setShowSelectGameModal(false);
+
+    startGame();
+  }
+
   function startGame() {
-    if (selectedPlayers.length < 2) {
-      setWarningMessage('You need to select at least 2 players to start a game');
+    if (!game) {
+      setWarningMessage('You need to select a game to start!');
+      setShowWarningToast(true);
+      return;
+    }
+
+    if (selectedPlayers.length < game.minPlayers) {
+      setWarningMessage('You need to select at least ' + game.minPlayers + ' players to start a game!');
       setShowWarningToast(true);
       return;
     }
     
-    history.push('/player-order', { players: selectedPlayers });
+    history.push('/player-order', { players: selectedPlayers, game: game });
   }
 
   return (
@@ -78,7 +98,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonButton className='ion-padding' onClick={startGame} expand="block">Start a Game</IonButton>
+        <IonButton className='ion-padding' onClick={() => setShowSelectGameModal(true)} expand="block">Start a Game</IonButton>
 
         <PlayersContainer players={players} deletePlayer={deletePlayer} 
           selectPlayer={selectPlayer} unselectPlayer={unselectPlayer} />
@@ -98,6 +118,7 @@ const Home: React.FC = () => {
           show={showWarningToast}
           setShow={setShowWarningToast}
         ></WarningToast>
+        <SelectGameModal show={showSelectGameModal} selectGame={selectGame} close={() => setShowSelectGameModal(false)}></SelectGameModal>
       </IonContent>
     </IonPage>
   );

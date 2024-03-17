@@ -19,13 +19,9 @@ const YahtzeeEndscreenModal: React.FC<YahtzeeEndscreenModalProps> = (props) => {
     yahtzeeGame.yahtzeeSheets.forEach((sheet: IYahtzeeSheet, key: number) => yahtzeeSheets.set(key, new YahtzeeSheet(sheet)));
 
     const playersByScore = yahtzeeGame.players.sort((a, b) => {
-        console.log(yahtzeeGame.yahtzeeSheets);
-        console.log(a);
-        console.log(yahtzeeGame.yahtzeeSheets.get(a.id)!.total - yahtzeeGame.yahtzeeSheets.get(b.id)!.total);
         return (new YahtzeeSheet(yahtzeeGame.yahtzeeSheets.get(b.id)!).total - new YahtzeeSheet(yahtzeeGame.yahtzeeSheets.get(a.id))!.total);
     });
 
-    console.log(playersByScore);
 
     return (
         <IonModal isOpen={show}>

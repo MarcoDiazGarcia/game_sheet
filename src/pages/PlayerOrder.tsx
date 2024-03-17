@@ -1,16 +1,21 @@
 import { IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonReorder, IonReorderGroup, IonTitle, IonToolbar, ItemReorderEventDetail } from '@ionic/react';
+
 import './PlayerOrder.css'
+
 import { useHistory, useLocation } from 'react-router';
 import { useState } from 'react';
+
 import { Player } from '../entities/classes/Player';
 import { IPlayer } from '../entities/interfaces/IPlayer';
+import IGame from '../entities/interfaces/IGame';
 
 const PlayerOrder: React.FC = () => {
     const history = useHistory();
     const location = useLocation();
-    const stateData: { players: Player[] } = location.state ? location.state as { players: Player[] }: {players: []};
+    const stateData: { players: Player[], game: IGame | null } = location.state ? location.state as { players: Player[], game: IGame | null }: {players: [], game: null};
 
     const [players, setPlayers] = useState(stateData.players);
+    const game: IGame | null = stateData.game;
 
     function handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
         const newPlayers: IPlayer[] = [...players];
@@ -23,7 +28,7 @@ const PlayerOrder: React.FC = () => {
     }
 
     function startGame() {
-        history.push('/game/yahtzee', { players: players });
+        history.push('/game/' + game!.route, { players: players });
     }
 
     return (

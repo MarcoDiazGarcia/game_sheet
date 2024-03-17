@@ -1,34 +1,54 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonModal, IonTitle, IonToolbar } from '@ionic/react';
 import './SelectGameModal.css'
+
+import IGame from '../../entities/interfaces/IGame';
+
+import { loadGames } from '../../data/data';
+
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonModal, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 
 interface SelectGameModalProps {
     show: boolean;
-    dispatch: (action: any) => void;
+    selectGame: (game: IGame) => void;
+    close: () => void;
 }
 
 const SelectGameModal: React.FC<SelectGameModalProps> = (props) => {
-    const { show, dispatch } = props;
+    const { show, selectGame, close } = props;
+
+    const games: IGame[] = loadGames();
 
     return (
         <IonModal isOpen={show}>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Choose a game</IonTitle>
+                    <IonTitle>Choose game</IonTitle>
+                    <IonButtons slot='end'>
+                        <IonButton color='danger' onClick={close}>Close</IonButton>
+                    </IonButtons>
                 </IonToolbar>
-                <IonButtons>
-                    <IonButton>Close</IonButton>
-                </IonButtons>
             </IonHeader>
             <IonContent>
-                <IonList>
-                    <IonItem button onClick={() => dispatch({type: 'start', game: 'yahtzee'})}>
-                        <IonLabel>Yahtzee</IonLabel>
-                    </IonItem>
-                    <IonItem button onClick={() => dispatch({type: 'start', game: 'chess'})}>
-                        <IonLabel>Chess</IonLabel>
-                    </IonItem>
-                </IonList>
+            <IonGrid>
+                <IonRow>
+                    {games.map((game) => 
+                        <IonCol key={game.id} size='6' sizeMd='4' sizeLg='2'>
+                            <IonCard onClick={() => selectGame(game)}>
+                                <img alt={game.name + ' Logo'} src={game.image} />
+                                <IonCardHeader>
+                                    <IonCardTitle>{game.name}</IonCardTitle>
+                                    <IonCardSubtitle>{game.minPlayers} - {game.maxPlayers} Players</IonCardSubtitle>
+                                </IonCardHeader>
+                                <IonCardContent>
+                                    {game.description}
+                                </IonCardContent>
+                            </IonCard>
+                        </IonCol>
+                    )}
+                </IonRow>
+            </IonGrid>
             </IonContent>
         </IonModal>
     );
-}
+};
+
+export default SelectGameModal;
