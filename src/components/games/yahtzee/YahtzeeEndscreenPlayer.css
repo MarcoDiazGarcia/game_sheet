@@ -1,4 +1,4 @@
-.player {
+.yahtzee-endscreen-player {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,20 +10,20 @@
     font-weight: bolder;
 }
 
-.player:nth-child(n+4), .player:nth-child(n+4) * {
+.yahtzee-endscreen-player:nth-child(n+4), .yahtzee-endscreen-player:nth-child(n+4) * {
     border-width: 2px;
     font-weight: normal;
 }
 
-.place, .name, .score {
+.yahtzee-endscreen-player .place, .yahtzee-endscreen-player .name, .yahtzee-endscreen-player .score {
     padding: 10px;
 }
 
-.place {
+.yahtzee-endscreen-player .place {
     height: 100%;
     border-right: 4px solid #000;
 }
 
-.score {
+.yahtzee-endscreen-player .score {
     border-left: 4px solid #000;
 }

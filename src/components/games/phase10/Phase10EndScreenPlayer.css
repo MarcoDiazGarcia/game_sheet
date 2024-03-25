@@ -1,0 +1,29 @@
+.phase10-endscreen-player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px;
+    border: 4px solid #000;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.phase10-endscreen-player:nth-child(n+4), .phase10-endscreen-player:nth-child(n+4) * {
+    border-width: 2px;
+    font-weight: normal;
+}
+
+.phase10-endscreen-player .place, .phase10-endscreen-player .name, .phase10-endscreen-player .score {
+    padding: 10px;
+}
+
+.phase10-endscreen-player .place {
+    height: 100%;
+    border-right: 4px solid #000;
+}
+
+.phase10-endscreen-player .score {
+    border-left: 4px solid #000;
+}

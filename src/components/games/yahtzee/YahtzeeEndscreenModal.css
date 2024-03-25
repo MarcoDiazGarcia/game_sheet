@@ -1,7 +1,7 @@
-ion-buttons {
+.yahtzee-endscreen-modal ion-buttons {
     width: 50%;
 }
 
-ion-button {
+.yahtzee-endscreen-modal ion-button {
     width: 100%;
 }

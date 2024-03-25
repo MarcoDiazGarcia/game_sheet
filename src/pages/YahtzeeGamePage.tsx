@@ -6,12 +6,13 @@ import { YahtzeeGame } from '../entities/classes/YahtzeeGame';
 import { useEffect, useReducer, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,  } from '@ionic/react';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar,  } from '@ionic/react';
 import GamePlayerHeader from '../components/games/GamePlayerHeader';
 import YahtzeeSheetComp from '../components/games/yahtzee/YahtzeeSheetComp';
 import { IYahtzeeSheet } from '../entities/interfaces/IYahtzeeSheet';
 import YahtzeeEndscreenModal from '../components/games/yahtzee/YahtzeeEndscreenModal';
 import { YahtzeeSheet } from '../entities/classes/YahtzeeSheet';
+import { caretBack } from 'ionicons/icons';
 
 const YahtzeeGamePage: React.FC = () => {
     const [endScreenModalShow, setEndScreenModalShow] = useState(false);
@@ -24,10 +25,10 @@ const YahtzeeGamePage: React.FC = () => {
             case 'prev':
                 return new YahtzeeGame([], {...state, current: state.prev} as YahtzeeGame);
             case 'score-entered':
-                const newYahtzeeSheet: IYahtzeeSheet = {...state.current.yahtzeeSheet} as IYahtzeeSheet;
+                const newYahtzeeSheet: IYahtzeeSheet = {...state.current!.yahtzeeSheet} as IYahtzeeSheet;
                 newYahtzeeSheet[action.score.symbol] = action.score.value;
                 const yahtzeeGame = new YahtzeeGame([], {...state, current: {...state.current, yahtzeeSheet: newYahtzeeSheet}} as YahtzeeGame);
-                yahtzeeGame.yahtzeeSheets.set(yahtzeeGame.current.player.id, newYahtzeeSheet);
+                yahtzeeGame.yahtzeeSheets.set(yahtzeeGame.current!.player.id, newYahtzeeSheet);
                 yahtzeeGame.current = yahtzeeGame.next;
                 return yahtzeeGame;
             case 'restart':
@@ -71,6 +72,9 @@ const YahtzeeGamePage: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonBackButton icon={caretBack}></IonBackButton>
+                    </IonButtons>
                     <IonTitle>Yahtzee | {yahtzeeGame.players.length} Players</IonTitle>
                 </IonToolbar>
             </IonHeader>

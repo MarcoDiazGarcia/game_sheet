@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonModal, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonModal, IonPage, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
 import PlayersContainer from '../components/players/PlayersContainer';
 import AddPlayerModal from '../components/players/AddPlayerModal';
 import './Home.css';
@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { IPlayer } from '../entities/interfaces/IPlayer';
 import { loadDefaultPlayers } from '../data/data';
 import { addIcons } from 'ionicons';
-import { addOutline, play } from 'ionicons/icons';
+import { addOutline, settingsOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 import WarningToast from '../components/toasts/WarningToast';
 import IGame from '../entities/interfaces/IGame';
@@ -88,6 +88,11 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Home</IonTitle>
+          <IonButtons slot="end">
+            <IonButton routerLink="/settings">
+              <IonIcon icon={settingsOutline}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 

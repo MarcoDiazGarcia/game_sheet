@@ -10,7 +10,9 @@ export function loadDefaultPlayers(): IPlayer[] {
         new Player("Kadda", "e1a7fa"),
         new Player("Marco", "3fb3c5"),
         new Player("Marius", "18d35e"),
-        new Player("Paula", "543b9c")
+        new Player("Paula", "543b9c"),
+        new Player("Tom", "b8d6e3"),
+        new Player("Kzy", "8a0c00"),
     ];
 }
 

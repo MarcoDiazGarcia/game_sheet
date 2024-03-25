@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonReorder, IonReorderGroup, IonTitle, IonToolbar, ItemReorderEventDetail } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonReorder, IonReorderGroup, IonTitle, IonToolbar, ItemReorderEventDetail } from '@ionic/react';
 
 import './PlayerOrder.css'
 
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Player } from '../entities/classes/Player';
 import { IPlayer } from '../entities/interfaces/IPlayer';
 import IGame from '../entities/interfaces/IGame';
+import { caretBack } from 'ionicons/icons';
 
 const PlayerOrder: React.FC = () => {
     const history = useHistory();
@@ -35,7 +36,10 @@ const PlayerOrder: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                <IonTitle>Player Order</IonTitle>
+                    <IonButtons slot="start">
+                        <IonBackButton icon={caretBack}></IonBackButton>
+                    </IonButtons>
+                    <IonTitle>Player Order</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>

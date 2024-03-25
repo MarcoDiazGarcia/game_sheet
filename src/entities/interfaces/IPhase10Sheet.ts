@@ -4,4 +4,6 @@ export default interface IPhase10Sheet {
     score: number;
     totalScore: number;
     isFinished: boolean;
+    updateScoreForRound: (score: number, round: number) => void;
+    deleteRound: (round: number) => void;
 }

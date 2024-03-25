@@ -1,0 +1,13 @@
+.history-table {
+    background-color: var(--ion-color-light);
+    border-radius: 8px;
+}
+
+.history-table ion-grid ion-row:first-child {
+    font-weight: bold;
+    border-bottom: 4px double var(--ion-color-dark);
+}
+
+.history-table ion-grid ion-row:not(:first-child):not(:last-child) {
+    border-bottom: 1px solid var(--ion-color-dark);
+}

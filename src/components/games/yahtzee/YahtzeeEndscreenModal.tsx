@@ -18,13 +18,15 @@ const YahtzeeEndscreenModal: React.FC<YahtzeeEndscreenModalProps> = (props) => {
     const yahtzeeSheets: Map<number, IYahtzeeSheet> = new Map<number, IYahtzeeSheet>();
     yahtzeeGame.yahtzeeSheets.forEach((sheet: IYahtzeeSheet, key: number) => yahtzeeSheets.set(key, new YahtzeeSheet(sheet)));
 
-    const playersByScore = yahtzeeGame.players.sort((a, b) => {
+    const playersByScore = [...yahtzeeGame.players];
+
+    playersByScore.sort((a, b) => {
         return (new YahtzeeSheet(yahtzeeGame.yahtzeeSheets.get(b.id)!).total - new YahtzeeSheet(yahtzeeGame.yahtzeeSheets.get(a.id))!.total);
     });
 
 
     return (
-        <IonModal isOpen={show}>
+        <IonModal isOpen={show} className='yahtzee-endscreen-modal'>
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>Game Over</IonTitle>

@@ -11,7 +11,7 @@ const YahtzeeEndscreenPlayer: React.FC<YahtzeeEndscreenPlayerProps> = (props) =>
     const { player, score, place } = props;
 
     return (
-        <div className="ion-margin player" style={{borderColor: '#' + player.color}}>
+        <div className="ion-margin yahtzee-endscreen-player" style={{borderColor: '#' + player.color}}>
             <div className="place" style={{borderColor: '#' + player.color}}>{place}</div>
             <div className="name">{player.name}</div>
             <div className="score" style={{borderColor: '#' + player.color}}>{score}</div>

@@ -3,6 +3,8 @@ import { IPlayer } from "./IPlayer";
 
 export default interface IPhase10Game {
     players: IPlayer[];
+    dealer: IPlayer;
+    round: number;
     current?: {
         player: IPlayer;
         sheet: IPhase10Sheet;

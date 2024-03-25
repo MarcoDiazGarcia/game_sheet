@@ -31,7 +31,7 @@ const SelectGameModal: React.FC<SelectGameModalProps> = (props) => {
             <IonGrid>
                 <IonRow>
                     {games.map((game) => 
-                        <IonCol key={game.id} size='6' sizeMd='4' sizeLg='2'>
+                        <IonCol key={game.id} size='6' sizeMd='4'>
                             <IonCard onClick={() => selectGame(game)}>
                                 <img alt={game.name + ' Logo'} src={game.image} />
                                 <IonCardHeader>
